@@ -1,5 +1,5 @@
 /*
- * C++11 code templates for contests.
+ * C++11 code template for contests.
  * @author: Andrey Kalendarov
  * @e-mail: andreykalendarov@gmail.com
  */
