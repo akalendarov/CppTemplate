@@ -28,7 +28,7 @@ public:
 	{
 		//cout.precision(20);
 		cin.tie(nullptr);
-        ios_base::sync_with_stdio(false);
+		ios_base::sync_with_stdio(false);
 #ifdef ANDREIKKAA
 		assert(freopen("input.txt", "r", stdin));
 		//assert(freopen("output.txt", "w", stdout));
