@@ -15,7 +15,7 @@ typedef long double ld;
 class Solution
 {
 public:
-	array<int, 10000000> a;
+
 
 	inline void solve()
 	{
