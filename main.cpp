@@ -16,9 +16,9 @@ ostream &operator<<(ostream &out, const vector<T> &v)
 {
 	if(v.empty())
 		return out;
-	cout << v.front();
+	out << v.front();
 	for(auto it = ++v.begin(); it != v.end(); ++it)
-		cout << ' ' << *it;
+		out << ' ' << *it;
 	return out;
 }
 
@@ -26,7 +26,7 @@ template<typename T>
 istream &operator>>(istream &in, vector<T> &v)
 {
 	for(auto &i : v)
-		cin >> i;
+		in >> i;
 	return in;
 }
 
