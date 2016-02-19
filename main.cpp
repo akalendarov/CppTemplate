@@ -11,6 +11,25 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
+template<typename T>
+ostream &operator<<(ostream &out, const vector<T> &v)
+{
+	if(v.empty())
+		return out;
+	cout << v.front();
+	for(auto it = ++v.begin(); it != v.end(); ++it)
+		cout << ' ' << *it;
+	return out;
+}
+
+template<typename T>
+istream &operator>>(istream &in, vector<T> &v)
+{
+	for(auto &i : v)
+		cin >> i;
+	return in;
+}
+
 class Reader
 {
 private:
