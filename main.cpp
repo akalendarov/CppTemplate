@@ -11,8 +11,19 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
+template<class T>
+class vec : public vector<T>
+{
+	using vector<T>::vector;
+public:
+	T &operator[](const size_t x)
+	{
+		return this->at(x);
+	}
+};
+
 template<typename T>
-ostream &operator<<(ostream &out, const vector<T> &v)
+ostream &operator<<(ostream &out, const vec<T> &v)
 {
 	if(v.empty())
 		return out;
@@ -23,7 +34,7 @@ ostream &operator<<(ostream &out, const vector<T> &v)
 }
 
 template<typename T>
-istream &operator>>(istream &in, vector<T> &v)
+istream &operator>>(istream &in, vec<T> &v)
 {
 	for(auto &i : v)
 		in >> i;
