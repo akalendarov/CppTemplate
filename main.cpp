@@ -1,12 +1,88 @@
 /*
- * C++11 code template for contests.
- * @author: Andrey Kalendarov
- * @e-mail: andreykalendarov@gmail.com
- */
+* C++11 code template for contests.
+* @author: Andrey Kalendarov
+* @e-mail: andreykalendarov@gmail.com
+*/
 
 /* ______ TEMPLATE ______ */
 
-#include <bits/stdc++.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include <cassert>
+#include <cctype>
+#include <cerrno>
+#include <cfloat>
+#include <ciso646>
+#include <climits>
+#include <clocale>
+#include <cmath>
+#include <csetjmp>
+#include <csignal>
+#include <cstdarg>
+#include <cstddef>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <ccomplex>
+#include <cfenv>
+#include <cinttypes>
+#include <cstdbool>
+#include <cstdint>
+#include <ctgmath>
+#include <cwchar>
+#include <cwctype>
+#include <algorithm>
+#include <bitset>
+#include <complex>
+#include <deque>
+#include <exception>
+#include <fstream>
+#include <functional>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <list>
+#include <locale>
+#include <map>
+#include <memory>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <streambuf>
+#include <string>
+#include <typeinfo>
+#include <utility>
+#include <valarray>
+#include <vector>
+#include <array>
+#include <atomic>
+#include <chrono>
+#include <condition_variable>
+#include <forward_list>
+#include <future>
+#include <initializer_list>
+#include <mutex>
+#include <random>
+#include <ratio>
+#include <regex>
+#include <scoped_allocator>
+#include <system_error>
+#include <thread>
+#include <tuple>
+#include <typeindex>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+
 using namespace std;
 typedef long long ll;
 typedef long double ld;
@@ -14,9 +90,27 @@ typedef long double ld;
 template<class T>
 class vec : public vector<T>
 {
-	using vector<T>::vector;
 public:
-	T &operator[](const size_t x)
+	using vector<T>::vector;
+	inline const_reference operator[](size_t x) const
+	{
+		return this->at(x);
+	}
+	inline reference operator[](size_t x)
+	{
+		return this->at(x);
+	}
+};
+
+template<>
+class vec<bool> : public vector<bool>
+{
+	using vector<bool>::vector;
+	inline const_reference operator[](size_t x) const
+	{
+		return this->at(x);
+	}
+	inline reference operator[](size_t x)
 	{
 		return this->at(x);
 	}
@@ -25,10 +119,10 @@ public:
 template<typename T>
 ostream &operator<<(ostream &out, const vec<T> &v)
 {
-	if(v.empty())
+	if (v.empty())
 		return out;
 	out << v.front();
-	for(auto it = ++v.begin(); it != v.end(); ++it)
+	for (auto it = ++v.begin(); it != v.end(); ++it)
 		out << ' ' << *it;
 	return out;
 }
@@ -36,128 +130,138 @@ ostream &operator<<(ostream &out, const vec<T> &v)
 template<typename T>
 istream &operator>>(istream &in, vec<T> &v)
 {
-	for(auto &i : v)
+	for (auto &i : v)
 		in >> i;
 	return in;
 }
 
-class Reader
+/**  FAST ALLOCATOR
+char alloc_memory[250 * 1000 * 1000];
+size_t alloc_pointer = 0;
+void* operator new(size_t x)
 {
-private:
-	void setup()
-	{ cin.tie(nullptr), ios_base::sync_with_stdio(false); }
-
-public:
-	Reader()
-	{ setup(); }
-
-	Reader(const char *s)
-	{ setup(), freopen(s, "r", stdin); }
-
-	~Reader()
-	{ fclose(stdin); }
-
-	template<typename T>
-	inline void operator()(T &t)
-	{ cin >> t; }
-
-	template<typename T, typename... Args>
-	inline void operator()(T &t, Args &... args)
-	{ operator()(t), operator()(args...); }
-};
-
-class Writer
+alloc_pointer += x;
+return alloc_memory + alloc_pointer - x;
+}
+void operator delete(void* x)
 {
-private:
-	void setup()
-	{ /*cout.precision(20);*/ }
 
-public:
-	Writer()
-	{ setup(); }
-
-	Writer(const char *s)
-	{ setup(), freopen(s, "w", stdout); }
-
-	~Writer()
-	{ fflush(stdout), fclose(stdin); }
-
-	template<typename T>
-	inline void raw(T x)
-	{ cout << x; }
-
-	template<typename T, typename... Args>
-	inline void raw(T x, Args... args)
-	{ raw(x), raw(args...); }
-
-	inline void operator()()
-	{ raw('\n'); }
-
-	template<typename T>
-	inline void operator()(T t)
-	{ raw(t), raw('\n'); }
-
-	template<typename T, typename... Args>
-	inline void operator()(T x, Args... args)
-	{ raw(x), raw(' '), operator()(args...); };
-};
-
-class Debug
-{
-public:
-	Debug()
-	{ }
-
-	~Debug()
-	{ operator()("Time:", clock() / (ld) CLOCKS_PER_SEC); }
-
-	template<typename T>
-	inline void raw(T x)
-	{
-#ifdef ANDREIKKAA
-		cout << x;
-#endif
-	}
-
-	template<typename T>
-	inline void fmt(T t)
-	{ raw(t); }
-
-	template<typename T, typename... Args>
-	inline void fmt(T x, Args... args)
-	{ raw(x), raw(' '), fmt(args...); };
-
-	template<typename... Args>
-	inline void operator()(Args... args)
-	{ raw("<<"), fmt(args...), raw(">>"), raw('\n'); };
-};
+}
+*/
 
 /* ________ CODE ________ */
 
 class Solution
 {
 public:
-	Reader in;
-	Writer out;
-	Debug deb;
+
+
 
 	inline void solve()
 	{
 
 	}
 
-	Solution() :
-
+	Solution()
+	{
 #ifdef ANDREIKKAA
-			in("input.txt"), out(), deb()
+		solution_redirect_io("input.txt", "");
 #else
-	in(), out(), deb()
+		solution_redirect_io("", "");
+#endif // ANDREIKKAA
+		solution_setup();
+	}
+
+	~Solution()
+	{
+		deb("Time:", clock() / (ld)CLOCKS_PER_SEC);
+		fclose(stdin), fflush(stdout), fclose(stdout);
+	}
+private:
+
+	void solution_setup()
+	{
+		cin.tie(nullptr), ios_base::sync_with_stdio(false);
+		/*cout.precision(20);*/
+	}
+
+	void solution_redirect_io(const char* in, const char* out)
+	{
+		freopen(in, "r", stdin);
+		freopen(out, "w", stdout);
+	}
+
+	template<typename T>
+	inline void in(T &t)
+	{
+		cin >> t;
+	}
+
+	template<typename T, typename... Args>
+	inline void in(T &t, Args &... args)
+	{
+		in(t), in(args...);
+	}
+
+	template<typename T>
+	inline void raw(const T x)
+	{
+		cout << x;
+	}
+
+	template<typename T, typename... Args>
+	inline void raw(const T x, const Args... args)
+	{
+		raw(x), raw(args...);
+	}
+
+	inline void out()
+	{
+		raw('\n');
+	}
+
+	template<typename T>
+	inline void out(const T t)
+	{
+		raw(t), raw('\n');
+	}
+
+	template<typename T, typename... Args>
+	inline void out(const T x, const Args... args)
+	{
+		raw(x), raw(' '), out(args...);
+	};
+
+	template<typename T>
+	inline void solution_deb(const T x)
+	{
+#ifdef ANDREIKKAA
+		raw(x);
 #endif
-	{ }
+	}
+
+	template<typename T, typename... Args>
+	inline void solution_deb(const T x, const Args... args)
+	{
+		solution_deb(x), solution_deb(' '), solution_deb(args...);
+	};
+
+	template<typename... Args>
+	inline void deb(const Args... args)
+	{
+		solution_deb("<<"), solution _deb(args...), solution_deb(">>"), solution_deb('\n');
+	};
 };
 
 int main()
 {
-	static Solution s;
-	s.solve();
+	auto s = new Solution;
+	s->solve();
+	delete s;
+
+#ifdef ANDREIKKAA
+#ifdef _WIN32
+	while (true) {}
+#endif //WIN32
+#endif // ANDREIKKAA
 }
