@@ -92,11 +92,11 @@ class vec : public vector<T>
 {
 public:
 	using vector<T>::vector;
-	inline const_reference operator[](size_t x) const
+	inline const T operator[](size_t x) const
 	{
 		return this->at(x);
 	}
-	inline reference operator[](size_t x)
+	inline T operator[](size_t x)
 	{
 		return this->at(x);
 	}
@@ -155,11 +155,11 @@ class Solution
 {
 public:
 
-
+	
 
 	inline void solve()
 	{
-
+		
 	}
 
 	Solution()
@@ -175,7 +175,7 @@ public:
 	~Solution()
 	{
 		deb("Time:", clock() / (ld)CLOCKS_PER_SEC);
-		fclose(stdin), fflush(stdout), fclose(stdout);
+		fflush(stdout);
 	}
 private:
 
@@ -185,22 +185,24 @@ private:
 		/*cout.precision(20);*/
 	}
 
-	void solution_redirect_io(const char* in, const char* out)
+	void solution_redirect_io(const string &in, const string &out)
 	{
-		freopen(in, "r", stdin);
-		freopen(out, "w", stdout);
+		if (not in.empty())
+			freopen(in.c_str(), "r", stdin);
+		if (not out.empty())
+			freopen(out.c_str(), "w", stdout);
 	}
 
 	template<typename T>
-	inline void in(T &t)
+	inline void in(T &x)
 	{
-		cin >> t;
+		cin >> x;
 	}
 
 	template<typename T, typename... Args>
-	inline void in(T &t, Args &... args)
+	inline void in(T &x, Args &... args)
 	{
-		in(t), in(args...);
+		in(x), in(args...);
 	}
 
 	template<typename T>
@@ -221,9 +223,9 @@ private:
 	}
 
 	template<typename T>
-	inline void out(const T t)
+	inline void out(const T x)
 	{
-		raw(t), raw('\n');
+		raw(x), raw('\n');
 	}
 
 	template<typename T, typename... Args>
@@ -237,7 +239,7 @@ private:
 	{
 #ifdef ANDREIKKAA
 		raw(x);
-#endif
+#endif //ANDREIKKAA
 	}
 
 	template<typename T, typename... Args>
@@ -249,7 +251,7 @@ private:
 	template<typename... Args>
 	inline void deb(const Args... args)
 	{
-		solution_deb("<<"), solution _deb(args...), solution_deb(">>"), solution_deb('\n');
+		solution_deb("<<"), solution_deb(args...), solution_deb(">>"), solution_deb('\n');
 	};
 };
 
