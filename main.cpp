@@ -96,7 +96,7 @@ public:
 	{
 		return this->at(x);
 	}
-	inline T operator[](size_t x)
+	inline T& operator[](size_t x)
 	{
 		return this->at(x);
 	}
@@ -135,15 +135,17 @@ istream &operator>>(istream &in, vec<T> &v)
 	return in;
 }
 
-/**  FAST ALLOCATOR
+/* _____ ALLOCATION _____ */
+
+/*
 char alloc_memory[250 * 1000 * 1000];
 size_t alloc_pointer = 0;
-void* operator new(size_t x)
+inline void* operator new(size_t x)
 {
-alloc_pointer += x;
-return alloc_memory + alloc_pointer - x;
+	alloc_pointer += x;
+	return alloc_memory + alloc_pointer - x;
 }
-void operator delete(void* x)
+inline void operator delete(void* x)
 {
 
 }
@@ -155,11 +157,11 @@ class Solution
 {
 public:
 
-	
+
 
 	inline void solve()
 	{
-		
+
 	}
 
 	Solution()
@@ -182,15 +184,15 @@ private:
 	void solution_setup()
 	{
 		cin.tie(nullptr), ios_base::sync_with_stdio(false);
-		/*cout.precision(20);*/
+		//cout.precision(20);
 	}
 
 	void solution_redirect_io(const string &in, const string &out)
 	{
 		if (not in.empty())
-			freopen(in.c_str(), "r", stdin);
+			assert(freopen(in.c_str(), "r", stdin) != nullptr);
 		if (not out.empty())
-			freopen(out.c_str(), "w", stdout);
+			assert(freopen(out.c_str(), "w", stdout) != nullptr);
 	}
 
 	template<typename T>
