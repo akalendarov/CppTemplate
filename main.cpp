@@ -17,6 +17,24 @@
 typedef long long ll;
 typedef long double ld;
 
+const int MEMORY_LIMIT_MB = 250;
+const int TIME_LIMIT_S = 1;
+
+const char input_filename[] =
+#ifdef ANDREIKKAA
+"input.txt"
+#else
+""
+#endif
+;
+const char output_filename[] =
+#ifdef ANDREIKKAA
+""
+#else
+""
+#endif
+;
+
 /* ______ INCLUDES ______ */
 
 #include <cassert>
@@ -101,7 +119,7 @@ using namespace std;
 template<typename T, typename U>
 ostream &operator<<(ostream &out, const pair<T, U> &p)
 {
-	out << p.first << " " << p.second;
+	out << p.first << ' ' << p.second;
 	return out;
 }
 
@@ -184,7 +202,7 @@ istream &operator>>(istream &in, vector<T> &v)
 /* _____ ALLOCATION _____ */
 
 #ifdef ANDREIKKAA_ALLOCATOR
-char alloc_memory[250 * 1000 * 1000];
+char alloc_memory[MEMORY_LIMIT_MB * 1000 * 1000];
 size_t alloc_pointer = 0;
 inline void* operator new(size_t x)
 {
@@ -197,6 +215,76 @@ inline void operator delete(void* x)
 }
 #endif
 
+/* _______ INPUT _________*/
+
+class Reader
+{
+public:
+	inline Reader(const string &filename)
+	{
+		cin.tie(nullptr), ios_base::sync_with_stdio(false);
+		if (not filename.empty())
+			assert(freopen(filename.c_str(), "r", stdin) != nullptr);
+	}
+
+	template<typename T>
+	inline void operator()(T &x)
+	{
+		cin >> x;
+	}
+
+	template<typename T, typename... Args>
+	inline void operator()(T &x, Args &... args)
+	{
+		read(x), read(args...);
+	}
+};
+Reader read(input_filename);
+
+/* _______ OUTPUT ________*/
+
+class Printer
+{
+public:
+	inline Printer(const string &filename)
+	{
+		//cout.precision(20);
+		//cout << fixed;
+		if (not filename.empty())
+			assert(freopen(filename.c_str(), "w", stdout) != nullptr);
+	}
+
+	template<typename T>
+	inline void out(const T x)
+	{
+		cout << x;
+	}
+
+	template<typename T, typename... Args>
+	inline void out(const T x, const Args... args)
+	{
+		out(x), out(args...);
+	}
+
+	inline void operator()()
+	{
+		out('\n');
+	}
+
+	template<typename T>
+	inline void operator()(const T x)
+	{
+		out(x), out('\n');
+	}
+
+	template<typename T, typename... Args>
+	inline void operator()(const T x, const Args... args)
+	{
+		out(x), out(' '), print(args...);
+	};
+};
+Printer print(output_filename);
+
 /* ________ CODE ________ */
 
 class Solution
@@ -205,100 +293,26 @@ public:
 
 	inline void solve()
 	{
-
+		
 	}
 
 	Solution()
 	{
 #ifdef ANDREIKKAA
-		solution_redirect_io("input.txt", "");
-#else
-		solution_redirect_io("", "");
+		start = clock();
 #endif // ANDREIKKAA
-		solution_setup();
 	}
 
 	~Solution()
 	{
-		deb("Time:", clock() / (ld)CLOCKS_PER_SEC);
-		fflush(stdout);
+#ifdef ANDREIKKAA
+		print("Time:", (clock() - start) / (ld)CLOCKS_PER_SEC);
+#endif // ANDREIKKAA
 	}
 private:
-
-	void solution_setup()
-	{
-		cin.tie(nullptr), ios_base::sync_with_stdio(false);
-		//cout.precision(20);
-	}
-
-	void solution_redirect_io(const string &in, const string &out)
-	{
-		if (not in.empty())
-			assert(freopen(in.c_str(), "r", stdin) != nullptr);
-		if (not out.empty())
-			assert(freopen(out.c_str(), "w", stdout) != nullptr);
-	}
-
-	template<typename T>
-	inline void in(T &x)
-	{
-		cin >> x;
-	}
-
-	template<typename T, typename... Args>
-	inline void in(T &x, Args &... args)
-	{
-		in(x), in(args...);
-	}
-
-	template<typename T>
-	inline void raw(const T x)
-	{
-		cout << x;
-	}
-
-	template<typename T, typename... Args>
-	inline void raw(const T x, const Args... args)
-	{
-		raw(x), raw(args...);
-	}
-
-	inline void out()
-	{
-		raw('\n');
-	}
-
-	template<typename T>
-	inline void out(const T x)
-	{
-		raw(x), raw('\n');
-	}
-
-	template<typename T, typename... Args>
-	inline void out(const T x, const Args... args)
-	{
-		raw(x), raw(' '), out(args...);
-	};
-
-	template<typename T>
-	inline void solution_deb(const T x)
-	{
 #ifdef ANDREIKKAA
-		raw(x);
-#endif //ANDREIKKAA
-	}
-
-	template<typename T, typename... Args>
-	inline void solution_deb(const T x, const Args... args)
-	{
-		solution_deb(x), solution_deb(' '), solution_deb(args...);
-	};
-
-	template<typename... Args>
-	inline void deb(const Args... args)
-	{
-		solution_deb("<<"), solution_deb(args...), solution_deb(">>"), solution_deb('\n');
-	};
+	time_t start;
+#endif // ANDREIKKAA
 };
 
 int main()
@@ -306,7 +320,6 @@ int main()
 	auto s = new Solution;
 	s->solve();
 	delete s;
-
 #ifdef ANDREIKKAA 
 #ifdef _WIN32
 	while (true);
