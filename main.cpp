@@ -4,9 +4,21 @@
 * @e-mail: andreykalendarov@gmail.com
 */
 
-/* ______ TEMPLATE ______ */
+/*______ DEFINES _______*/
 
 #define _CRT_SECURE_NO_WARNINGS
+//#define ANDREIKKAA_ALLOCATOR
+//#define ANDREIKKAA_UNSAFE_VECTOR
+
+#ifdef ANDREIKKAA_UNSAFE_VECTOR
+#define vec vector
+#endif // ANDREIKKAA_UNSAFE_VECTOR
+
+typedef long long ll;
+typedef long double ld;
+
+/* ______ INCLUDES ______ */
+
 #include <cassert>
 #include <cctype>
 #include <cerrno>
@@ -82,12 +94,26 @@
 #include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
-
 using namespace std;
-typedef long long ll;
-typedef long double ld;
 
-template<class T>
+/*_______ TYPES ________*/
+
+template<typename T, typename U>
+ostream &operator<<(ostream &out, const pair<T, U> &p)
+{
+	out << p.first << " " << p.second;
+	return out;
+}
+
+template<typename T, typename U>
+istream &operator>>(istream &in, pair<T, U> &p)
+{
+	in >> p.first >> p.second;
+	return in;
+}
+
+#ifndef ANDREIKKAA_UNSAFE_VECTOR
+template<typename T>
 class vec : public vector<T>
 {
 public:
@@ -134,10 +160,30 @@ istream &operator>>(istream &in, vec<T> &v)
 		in >> i;
 	return in;
 }
+#endif // !ANDREIKKAA_UNSAFE_VECTOR
+
+template<typename T>
+ostream &operator<<(ostream &out, const vector<T> &v)
+{
+	if (v.empty())
+		return out;
+	out << v.front();
+	for (auto it = ++v.begin(); it != v.end(); ++it)
+		out << ' ' << *it;
+	return out;
+}
+
+template<typename T>
+istream &operator>>(istream &in, vector<T> &v)
+{
+	for (auto &i : v)
+		in >> i;
+	return in;
+}
 
 /* _____ ALLOCATION _____ */
 
-/*
+#ifdef ANDREIKKAA_ALLOCATOR
 char alloc_memory[250 * 1000 * 1000];
 size_t alloc_pointer = 0;
 inline void* operator new(size_t x)
@@ -149,15 +195,13 @@ inline void operator delete(void* x)
 {
 
 }
-*/
+#endif
 
 /* ________ CODE ________ */
 
 class Solution
 {
 public:
-
-
 
 	inline void solve()
 	{
@@ -263,9 +307,9 @@ int main()
 	s->solve();
 	delete s;
 
-#ifdef ANDREIKKAA
+#ifdef ANDREIKKAA 
 #ifdef _WIN32
-	while (true) {}
-#endif //WIN32
+	while (true);
+#endif // _WIN32
 #endif // ANDREIKKAA
 }
