@@ -39,33 +39,22 @@ const char output_filename[] =
 
 #include <cassert>
 #include <cctype>
-#include <cerrno>
 #include <cfloat>
 #include <ciso646>
 #include <climits>
-#include <clocale>
 #include <cmath>
-#include <csetjmp>
-#include <csignal>
-#include <cstdarg>
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
-#include <ccomplex>
-#include <cfenv>
-#include <cinttypes>
-#include <cstdbool>
 #include <cstdint>
 #include <ctgmath>
-#include <cwchar>
-#include <cwctype>
+
 #include <algorithm>
 #include <bitset>
 #include <complex>
 #include <deque>
-#include <exception>
 #include <fstream>
 #include <functional>
 #include <iomanip>
@@ -76,40 +65,22 @@ const char output_filename[] =
 #include <iterator>
 #include <limits>
 #include <list>
-#include <locale>
 #include <map>
-#include <memory>
-#include <new>
 #include <numeric>
 #include <ostream>
 #include <queue>
 #include <set>
 #include <sstream>
 #include <stack>
-#include <stdexcept>
-#include <streambuf>
 #include <string>
-#include <typeinfo>
 #include <utility>
 #include <valarray>
 #include <vector>
+
 #include <array>
-#include <atomic>
-#include <chrono>
-#include <condition_variable>
 #include <forward_list>
-#include <future>
 #include <initializer_list>
-#include <mutex>
-#include <random>
-#include <ratio>
 #include <regex>
-#include <scoped_allocator>
-#include <system_error>
-#include <thread>
-#include <tuple>
-#include <typeindex>
-#include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
 using namespace std;
@@ -161,7 +132,7 @@ class vec<bool> : public vector<bool>
 };
 
 template<typename T>
-ostream &operator<<(ostream &out, const vec<T> &v)
+inline ostream &operator<<(ostream &out, const vec<T> &v)
 {
 	if (v.empty())
 		return out;
@@ -172,7 +143,7 @@ ostream &operator<<(ostream &out, const vec<T> &v)
 }
 
 template<typename T>
-istream &operator>>(istream &in, vec<T> &v)
+inline istream &operator>>(istream &in, vec<T> &v)
 {
 	for (auto &i : v)
 		in >> i;
@@ -181,7 +152,7 @@ istream &operator>>(istream &in, vec<T> &v)
 #endif // !ANDREIKKAA_UNSAFE_VECTOR
 
 template<typename T>
-ostream &operator<<(ostream &out, const vector<T> &v)
+inline ostream &operator<<(ostream &out, const vector<T> &v)
 {
 	if (v.empty())
 		return out;
@@ -192,7 +163,7 @@ ostream &operator<<(ostream &out, const vector<T> &v)
 }
 
 template<typename T>
-istream &operator>>(istream &in, vector<T> &v)
+inline istream &operator>>(istream &in, vector<T> &v)
 {
 	for (auto &i : v)
 		in >> i;
