@@ -179,7 +179,7 @@ size_t alloc_pointer = 0;
 inline void* operator new(size_t x)
 {
 	alloc_pointer += x;
-return alloc_memory + alloc_pointer - x;
+	return alloc_memory + alloc_pointer - x;
 }
 inline void operator delete(void* x)
 {
