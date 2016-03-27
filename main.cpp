@@ -6,6 +6,7 @@
 
 /*______ DEFINES _______*/
 
+#define _SCL_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 //#define ANDREIKKAA_ALLOCATOR
 //#define ANDREIKKAA_UNSAFE_VECTOR
@@ -178,7 +179,7 @@ size_t alloc_pointer = 0;
 inline void* operator new(size_t x)
 {
 	alloc_pointer += x;
-	return alloc_memory + alloc_pointer - x;
+return alloc_memory + alloc_pointer - x;
 }
 inline void operator delete(void* x)
 {
@@ -193,7 +194,7 @@ class Reader
 public:
 	inline Reader(const string &filename)
 	{
-		cin.tie(nullptr), ios_base::sync_with_stdio(false);
+		cin.tie(nullptr);//, ios_base::sync_with_stdio(false);
 		if (not filename.empty())
 			assert(freopen(filename.c_str(), "r", stdin) != nullptr);
 	}
@@ -207,7 +208,7 @@ public:
 	template<typename T, typename... Args>
 	inline void operator()(T &x, Args &... args)
 	{
-		read(x), read(args...);
+		operator()(x), operator()(args...);
 	}
 };
 Reader read(input_filename);
@@ -251,7 +252,7 @@ public:
 	template<typename T, typename... Args>
 	inline void operator()(const T x, const Args... args)
 	{
-		out(x), out(' '), print(args...);
+		out(x), out(' '), operator()(args...);
 	};
 };
 Printer print(output_filename);
@@ -264,7 +265,7 @@ public:
 
 	inline void solve()
 	{
-		
+
 	}
 
 	Solution()
