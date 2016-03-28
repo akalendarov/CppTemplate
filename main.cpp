@@ -122,6 +122,7 @@ template<>
 class vec<bool> : public vector<bool>
 {
 	using vector<bool>::vector;
+public:
 	inline const_reference operator[](size_t x) const
 	{
 		return this->at(x);
@@ -179,7 +180,7 @@ size_t alloc_pointer = 0;
 inline void* operator new(size_t x)
 {
 	alloc_pointer += x;
-	return alloc_memory + alloc_pointer - x;
+return alloc_memory + alloc_pointer - x;
 }
 inline void operator delete(void* x)
 {
@@ -265,7 +266,7 @@ public:
 
 	inline void solve()
 	{
-
+		
 	}
 
 	Solution()
