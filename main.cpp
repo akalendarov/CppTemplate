@@ -180,7 +180,7 @@ size_t alloc_pointer = 0;
 inline void* operator new(size_t x)
 {
 	alloc_pointer += x;
-return alloc_memory + alloc_pointer - x;
+	return alloc_memory + alloc_pointer - x;
 }
 inline void operator delete(void* x)
 {
@@ -195,7 +195,8 @@ class Reader
 public:
 	inline Reader(const string &filename)
 	{
-		cin.tie(nullptr);//, ios_base::sync_with_stdio(false);
+		cin.tie(nullptr);
+		ios_base::sync_with_stdio(false);
 		if (not filename.empty())
 			assert(freopen(filename.c_str(), "r", stdin) != nullptr);
 	}
@@ -212,7 +213,7 @@ public:
 		operator()(x), operator()(args...);
 	}
 };
-Reader read(input_filename);
+Reader rd(input_filename);
 
 /* _______ OUTPUT ________*/
 
@@ -256,7 +257,7 @@ public:
 		out(x), out(' '), operator()(args...);
 	};
 };
-Printer print(output_filename);
+Printer pr(output_filename);
 
 /* ________ CODE ________ */
 
@@ -279,7 +280,7 @@ public:
 	~Solution()
 	{
 #ifdef ANDREIKKAA
-		print("Time:", (clock() - start) / (ld)CLOCKS_PER_SEC);
+		cerr << "Time: " << (clock() - start) / (ld)CLOCKS_PER_SEC << endl;
 #endif // ANDREIKKAA
 	}
 private:
