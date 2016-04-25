@@ -39,51 +39,44 @@ const char output_filename[] =
 /* ______ INCLUDES ______ */
 
 #include <cassert>
-#include <cctype>
-#include <cfloat>
 #include <ciso646>
 #include <climits>
 #include <cmath>
 #include <cstddef>
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
-#include <cstdint>
 #include <ctgmath>
-
-#include <algorithm>
+#include <array>
 #include <bitset>
-#include <complex>
 #include <deque>
-#include <fstream>
-#include <functional>
-#include <iomanip>
-#include <ios>
-#include <iosfwd>
-#include <iostream>
-#include <istream>
-#include <iterator>
-#include <limits>
+#include <forward_list>
 #include <list>
 #include <map>
-#include <numeric>
-#include <ostream>
 #include <queue>
 #include <set>
-#include <sstream>
 #include <stack>
-#include <string>
-#include <utility>
-#include <valarray>
-#include <vector>
-
-#include <array>
-#include <forward_list>
-#include <initializer_list>
-#include <regex>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
+#include <algorithm>
+#include <complex>
+#include <functional>
+#include <initializer_list>
+#include <iterator>
+#include <limits>
+#include <locale>
+#include <numeric>
+#include <regex>
+#include <string>
+#include <utility>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+
 using namespace std;
 
 /*_______ TYPES ________*/
