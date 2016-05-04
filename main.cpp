@@ -8,6 +8,7 @@
 
 #define _SCL_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+//#define ANDREIKKAA_TOPCODER
 //#define ANDREIKKAA_ALLOCATOR
 //#define ANDREIKKAA_UNSAFE_VECTOR
 
@@ -265,38 +266,29 @@ class Solution
 {
 public:
 
-	inline void solve()
+	void solve()
 	{
-		
+
 	}
 
-	Solution()
-	{
 #ifdef ANDREIKKAA
-		start = clock();
-#endif // ANDREIKKAA
-	}
-
-	~Solution()
-	{
-#ifdef ANDREIKKAA
-		cerr << "Time: " << (clock() - start) / (ld)CLOCKS_PER_SEC << endl;
-#endif // ANDREIKKAA
-	}
+	Solution() { _start = clock(); }
+	~Solution() { cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl; }
 private:
-#ifdef ANDREIKKAA
-	time_t start;
-#endif // ANDREIKKAA
+	time_t _start;
+#endif
 };
 
+#if defined(ANDREIKKAA) || !defined(ANDREIKKAA_TOPCODER)
 int main()
 {
 	auto s = new Solution;
 	s->solve();
 	delete s;
-#ifdef ANDREIKKAA 
+#ifdef ANDREIKKAA
 #ifdef _WIN32
 	while (true);
 #endif // _WIN32
 #endif // ANDREIKKAA
 }
+#endif
