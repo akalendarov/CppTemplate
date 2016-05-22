@@ -12,6 +12,12 @@
 //#define ANDREIKKAA_ALLOCATOR
 //#define ANDREIKKAA_UNSAFE_VECTOR
 
+#define ANDREIKKAA_CLASS Solution
+#define ANDREIKKAA_METHOD solve
+#define ANDREIKKAA_PARAMETERS void
+#define ANDREIKKAA_CALL
+#define ANDREIKKAA_RETURN_TYPE void
+
 #ifdef ANDREIKKAA_UNSAFE_VECTOR
 #define vec vector
 #endif // ANDREIKKAA_UNSAFE_VECTOR
@@ -80,21 +86,23 @@ const char output_filename[] =
 
 using namespace std;
 
+/* _____ ALLOCATION _____ */
+
+#ifdef ANDREIKKAA_ALLOCATOR
+char alloc_memory[MEMORY_LIMIT_MB * 1000 * 1000];
+size_t alloc_pointer = 0;
+inline void* operator new(size_t x)
+{
+	alloc_pointer += x;
+return alloc_memory + alloc_pointer - x;
+}
+inline void operator delete(void*)
+{
+
+}
+#endif
+
 /*_______ TYPES ________*/
-
-template<typename T, typename U>
-ostream &operator<<(ostream &out, const pair<T, U> &p)
-{
-	out << p.first << ' ' << p.second;
-	return out;
-}
-
-template<typename T, typename U>
-istream &operator>>(istream &in, pair<T, U> &p)
-{
-	in >> p.first >> p.second;
-	return in;
-}
 
 #ifndef ANDREIKKAA_UNSAFE_VECTOR
 template<typename T>
@@ -126,7 +134,25 @@ public:
 		return this->at(x);
 	}
 };
+#endif // !ANDREIKKAA_UNSAFE_VECTOR
 
+/*____ I-O OPERATORS ____*/
+
+template<typename T, typename U>
+inline ostream &operator<<(ostream &out, const pair<T, U> &p)
+{
+	out << p.first << ' ' << p.second;
+	return out;
+}
+
+template<typename T, typename U>
+inline istream &operator>>(istream &in, pair<T, U> &p)
+{
+	in >> p.first >> p.second;
+	return in;
+}
+
+#ifndef ANDREIKKAA_UNSAFE_VECTOR
 template<typename T>
 inline ostream &operator<<(ostream &out, const vec<T> &v)
 {
@@ -165,22 +191,6 @@ inline istream &operator>>(istream &in, vector<T> &v)
 		in >> i;
 	return in;
 }
-
-/* _____ ALLOCATION _____ */
-
-#ifdef ANDREIKKAA_ALLOCATOR
-char alloc_memory[MEMORY_LIMIT_MB * 1000 * 1000];
-size_t alloc_pointer = 0;
-inline void* operator new(size_t x)
-{
-	alloc_pointer += x;
-	return alloc_memory + alloc_pointer - x;
-}
-inline void operator delete(void* x)
-{
-
-}
-#endif
 
 /* _______ INPUT _________*/
 
@@ -255,18 +265,18 @@ Printer pr(output_filename);
 
 /* ________ CODE ________ */
 
-class Solution
+ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS) 
+{
+
+}
+
+class ANDREIKKAA_CLASS
 {
 public:
-
-	void solve()
-	{
-
-	}
-
+	ANDREIKKAA_RETURN_TYPE ANDREIKKAA_METHOD(ANDREIKKAA_PARAMETERS){ return mainFunction(ANDREIKKAA_CALL); }
 #ifdef ANDREIKKAA
-	Solution() { _start = clock(); }
-	~Solution() { cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl; }
+	ANDREIKKAA_CLASS() { _start = clock(); }
+	~ANDREIKKAA_CLASS() { cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl; }
 private:
 	time_t _start;
 #endif
@@ -275,8 +285,8 @@ private:
 #if defined(ANDREIKKAA) || !defined(ANDREIKKAA_TOPCODER)
 int main()
 {
-	auto s = new Solution;
-	s->solve();
+	auto s = new ANDREIKKAA_CLASS;
+	s->ANDREIKKAA_METHOD(ANDREIKKAA_CALL);
 	delete s;
 #ifdef ANDREIKKAA
 #ifdef _WIN32
