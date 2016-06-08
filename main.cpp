@@ -25,7 +25,7 @@
 typedef long long ll;
 typedef long double ld;
 
-const int MEMORY_LIMIT_MB = 250;
+const int MEMORY_LIMIT_MB = 200;
 const int TIME_LIMIT_S = 1;
 
 const char input_filename[] =
@@ -98,185 +98,81 @@ return alloc_memory + alloc_pointer - x;
 }
 inline void operator delete(void*)
 {
-
+	
 }
 #endif
 
 /*_______ TYPES ________*/
 
 #ifndef ANDREIKKAA_UNSAFE_VECTOR
-template<typename T>
-class vec : public vector<T>
-{
-public:
+template<typename T> class vec : public vector<T>
+{ public:
 	using vector<T>::vector;
-	inline const T operator[](size_t x) const
-	{
-		return this->at(x);
-	}
-	inline T& operator[](size_t x)
-	{
-		return this->at(x);
-	}
+	inline const T operator[](size_t x) const { return this->at(x); }
+	inline T& operator[](size_t x) { return this->at(x); }
 };
 
-template<>
-class vec<bool> : public vector<bool>
-{
+template<> class vec<bool> : public vector<bool>
+{ public:
 	using vector<bool>::vector;
-public:
-	inline const_reference operator[](size_t x) const
-	{
-		return this->at(x);
-	}
-	inline reference operator[](size_t x)
-	{
-		return this->at(x);
-	}
+	inline const_reference operator[](size_t x) const { return this->at(x); }
+	inline reference operator[](size_t x) { return this->at(x); }
 };
 #endif // !ANDREIKKAA_UNSAFE_VECTOR
 
 /*____ I-O OPERATORS ____*/
 
-template<typename T, typename U>
-inline ostream &operator<<(ostream &out, const pair<T, U> &p)
-{
-	out << p.first << ' ' << p.second;
-	return out;
-}
-
-template<typename T, typename U>
-inline istream &operator>>(istream &in, pair<T, U> &p)
-{
-	in >> p.first >> p.second;
-	return in;
-}
-
-#ifndef ANDREIKKAA_UNSAFE_VECTOR
-template<typename T>
-inline ostream &operator<<(ostream &out, const vec<T> &v)
-{
-	if (v.empty())
-		return out;
-	out << v.front();
-	for (auto it = ++v.begin(); it != v.end(); ++it)
-		out << ' ' << *it;
-	return out;
-}
-
-template<typename T>
-inline istream &operator>>(istream &in, vec<T> &v)
-{
-	for (auto &i : v)
-		in >> i;
-	return in;
-}
-#endif // !ANDREIKKAA_UNSAFE_VECTOR
-
-template<typename T>
-inline ostream &operator<<(ostream &out, const vector<T> &v)
-{
-	if (v.empty())
-		return out;
-	out << v.front();
-	for (auto it = ++v.begin(); it != v.end(); ++it)
-		out << ' ' << *it;
-	return out;
-}
-
-template<typename T>
-inline istream &operator>>(istream &in, vector<T> &v)
-{
-	for (auto &i : v)
-		in >> i;
-	return in;
-}
+template<typename T, typename U> inline ostream &operator<<(ostream &out, const pair<T, U> &p) { out << p.first << ' ' << p.second; return out; }
+template<typename T, typename U> inline istream &operator>>(istream &in, pair<T, U> &p) { in >> p.first >> p.second; return in; }
+template<typename T> inline ostream &operator<<(ostream &out, const vector<T> &v) { if (v.empty()) return out; out << v.front(); for (auto it = ++v.begin(); it != v.end(); ++it) out << ' ' << *it; return out; }
+template<typename T> inline istream &operator>>(istream &in, vector<T> &v) { for (auto &i : v) in >> i; return in; }
 
 /* _______ INPUT _________*/
 
 class Reader
-{
-public:
-	inline Reader(const string &filename)
-	{
-		cin.tie(nullptr);
-		ios_base::sync_with_stdio(false);
-		if (not filename.empty())
-			assert(freopen(filename.c_str(), "r", stdin) != nullptr);
-	}
-
-	template<typename T>
-	inline void operator()(T &x)
-	{
-		cin >> x;
-	}
-
-	template<typename T, typename... Args>
-	inline void operator()(T &x, Args &... args)
-	{
-		operator()(x), operator()(args...);
-	}
+{ public:
+	inline Reader(const string &filename) { if (not filename.empty()) assert(freopen(filename.c_str(), "r", stdin) != nullptr); }
+	template<typename T> inline void operator()(T &x) { cin >> x; }
+	template<typename T, typename... Args> inline void operator()(T &x, Args &... args) { operator()(x), operator()(args...); }
+	template<typename T> inline T r() { T x; cin >> x; return x; }
 };
 Reader rd(input_filename);
 
 /* _______ OUTPUT ________*/
 
 class Printer
-{
-public:
-	inline Printer(const string &filename)
-	{
-		//cout.precision(20);
-		//cout << fixed;
-		if (not filename.empty())
-			assert(freopen(filename.c_str(), "w", stdout) != nullptr);
-	}
-
-	template<typename T>
-	inline void out(const T x)
-	{
-		cout << x;
-	}
-
-	template<typename T, typename... Args>
-	inline void out(const T x, const Args... args)
-	{
-		out(x), out(args...);
-	}
-
-	inline void operator()()
-	{
-		out('\n');
-	}
-
-	template<typename T>
-	inline void operator()(const T x)
-	{
-		out(x), out('\n');
-	}
-
-	template<typename T, typename... Args>
-	inline void operator()(const T x, const Args... args)
-	{
-		out(x), out(' '), operator()(args...);
-	};
+{ public:
+	inline Printer(const string &filename) { if (not filename.empty()) assert(freopen(filename.c_str(), "w", stdout) != nullptr); }
+	template<typename T> inline void p(const T x) { cout << x; }
+	template<typename T, typename... Args> inline void p(const T x, const Args... args) { p(x), p(args...); }
+	inline void operator()() { p('\n'); }
+	template<typename T> inline void operator()(const T x) { p(x), p('\n'); }
+	template<typename T, typename... Args> inline void operator()(const T x, const Args... args) { p(x), p(' '), operator()(args...); };
+	inline void f() { cout.flush(); }
 };
 Printer pr(output_filename);
 
 /* ________ CODE ________ */
 
-ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS) 
+inline ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS)
 {
-
+	
 }
 
 class ANDREIKKAA_CLASS
 {
 public:
-	ANDREIKKAA_RETURN_TYPE ANDREIKKAA_METHOD(ANDREIKKAA_PARAMETERS){ return mainFunction(ANDREIKKAA_CALL); }
+	ANDREIKKAA_RETURN_TYPE ANDREIKKAA_METHOD(ANDREIKKAA_PARAMETERS)
+	{
+		cin.tie(nullptr);
+		ios_base::sync_with_stdio(false);
+		//cout << setprecision(20);
+		//cout << fixed;
+		return mainFunction(ANDREIKKAA_CALL);
+	}
 #ifdef ANDREIKKAA
-	ANDREIKKAA_CLASS() { _start = clock(); }
-	~ANDREIKKAA_CLASS() { cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl; }
+	inline ANDREIKKAA_CLASS() { _start = clock(); }
+	inline ~ANDREIKKAA_CLASS() { cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl; }
 private:
 	time_t _start;
 #endif
@@ -285,9 +181,9 @@ private:
 #if defined(ANDREIKKAA) || !defined(ANDREIKKAA_TOPCODER)
 int main()
 {
-	auto s = new ANDREIKKAA_CLASS;
-	s->ANDREIKKAA_METHOD(ANDREIKKAA_CALL);
-	delete s;
+	auto _s = new ANDREIKKAA_CLASS;
+	_s->ANDREIKKAA_METHOD(ANDREIKKAA_CALL);
+	delete _s;
 #ifdef ANDREIKKAA
 #ifdef _WIN32
 	while (true);
