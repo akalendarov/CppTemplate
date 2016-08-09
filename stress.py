@@ -4,7 +4,7 @@ from time import time
 from subprocess import call
 
 TIME_LIMIT = 2
-TASK_NAME = "__Template_cpp__"
+TASK_NAME = "Debug/CppTemplate.exe"
 INPUT_FILE = "input.txt"
 OUTPUT_FILE = "output.txt"
 
@@ -54,7 +54,9 @@ def check():
 def main():
     while True:
         # gen()
+        print("lol")
         run()
+        print("kek")
         # solve()
         # check()
 
