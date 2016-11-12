@@ -88,32 +88,6 @@ template<typename T, typename U> inline istream &operator >> (istream &in, pair<
 template<typename T> inline ostream &operator<<(ostream &out, const vector<T> &v) { if (v.empty()) return out; out << v.front(); for (auto it = ++v.begin(); it != v.end(); ++it) out << ' ' << *it; return out; }
 template<typename T> inline istream &operator >> (istream &in, vector<T> &v) { for (auto &i : v) in >> i; return in; }
 
-/* _______ INPUT _________*/
-class Reader
-{
-public:
-	inline Reader(const string &filename) { if (not filename.empty()) assert(freopen(filename.c_str(), "r", stdin) != nullptr); }
-	template<typename T> inline void operator()(T &x) { cin >> x; }
-	template<typename T, typename... Args> inline void operator()(T &x, Args &... args) { operator()(x), operator()(args...); }
-	template<typename T> inline T r() { T x; cin >> x; return x; }
-};
-Reader rd(input_filename);
-
-/* _______ OUTPUT ________*/
-
-class Printer
-{
-public:
-	inline Printer(const string &filename) { if (not filename.empty()) assert(freopen(filename.c_str(), "w", stdout) != nullptr); }
-	template<typename T> inline void p(const T x) { cout << x; }
-	template<typename T, typename... Args> inline void p(const T x, const Args... args) { p(x), p(args...); }
-	inline void operator()() { p('\n'); }
-	template<typename T> inline void operator()(const T x) { p(x), p('\n'); }
-	template<typename T, typename... Args> inline void operator()(const T x, const Args... args) { p(x), p(' '), operator()(args...); };
-	inline void f() { cout.flush(); }
-};
-Printer pr(output_filename);
-
 /* ________ CODE ________ */
 
 inline ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS)
@@ -126,6 +100,10 @@ class ANDREIKKAA_CLASS
 public:
 	ANDREIKKAA_RETURN_TYPE ANDREIKKAA_METHOD(ANDREIKKAA_PARAMETERS)
 	{
+		if (input_filename[0] != '\0')
+			freopen(input_filename, "r", stdin);
+		if (output_filename[0] != '\0')
+			freopen(output_filename, "w", stdout);
 		cin.tie(nullptr);
 		ios_base::sync_with_stdio(false);
 		//cout << setprecision(20);
