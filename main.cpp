@@ -17,6 +17,8 @@
 #define ANDREIKKAA_RETURN_TYPE void
 typedef long long ll;
 typedef long double ld;
+#define first x
+#define second y
 const int MEMORY_LIMIT_MB = 200;
 const int TIME_LIMIT_S = 1;
 const char input_filename[] =

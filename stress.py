@@ -54,9 +54,7 @@ def check():
 def main():
     while True:
         # gen()
-        print("lol")
         run()
-        print("kek")
         # solve()
         # check()
 
