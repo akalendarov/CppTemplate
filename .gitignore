@@ -6,3 +6,6 @@
 *.db
 *.opendb
 *.user
+Debug
+Release
+x64
