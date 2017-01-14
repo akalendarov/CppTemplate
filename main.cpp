@@ -16,7 +16,6 @@ typedef long double ld;
 #define first x
 #define second y
 const size_t _ML = 200;
-const int _TL = 1;
 const char _inpf[] =
 #if defined(ANDREIKKAA)
 "input.txt"
@@ -36,7 +35,7 @@ const char _outf[] =
 using namespace std;
 
 #if defined(ANDREIKKAA_ALLOCATOR)
-char _mem[_ML * 1024 * 1024];
+char _mem[_ML * 1024LL * 1024LL];
 size_t _ptr = 0;
 inline void* operator new(size_t _x) { _ptr += _x; return _mem + _ptr - _x; }
 inline void operator delete(void*) { }
@@ -76,7 +75,7 @@ int main()
 	mainFunction(ANDREIKKAA_CALL);
 	
 #if defined(ANDREIKKAA)
-	cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
+	cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
 	while (true);
 #endif
 }
