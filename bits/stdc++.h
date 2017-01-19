@@ -4,7 +4,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <cassert>
-#include <ciso646>
 #include <climits>
 #include <cmath>
 #include <cstdint>
@@ -12,7 +11,6 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
-#include <array>
 #include <bitset>
 #include <deque>
 #include <forward_list>
@@ -20,7 +18,6 @@
 #include <map>
 #include <queue>
 #include <set>
-#include <stack>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -30,7 +27,6 @@
 #include <initializer_list>
 #include <iterator>
 #include <limits>
-#include <locale>
 #include <numeric>
 #include <regex>
 #include <string>
