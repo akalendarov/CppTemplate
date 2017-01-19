@@ -121,6 +121,7 @@
     <Text Include="input.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="stress.py" />
   </ItemGroup>
   <ItemGroup>

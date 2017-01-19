@@ -11,10 +11,19 @@
 #define ANDREIKKAA_PARAMETERS void
 #define ANDREIKKAA_CALL
 #define ANDREIKKAA_RETURN_TYPE void
+
+#include "bits/stdc++.h"
+using namespace std;
+
 typedef long long ll;
 typedef long double ld;
 #define first x
 #define second y
+#define endl "\n"
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+const ld PI = acos(-1);
+
 const int _ML = 200;
 const char _inpf[] =
 #if defined(ANDREIKKAA)
@@ -30,9 +39,6 @@ const char _outf[] =
 ""
 #endif
 ;
-
-#include "bits/stdc++.h"
-using namespace std;
 
 #if defined(ANDREIKKAA_ALLOCATOR)
 char _mem[_ML * 1024LL * 1024LL];
@@ -64,10 +70,13 @@ int main()
 	time_t _start = clock();
 #endif
 
+#pragma warning(push)
+#pragma warning(disable : 4127)
 	if (sizeof(_inpf) > 1)
 		freopen(_inpf, "r", stdin);
 	if (sizeof(_outf) > 1)
 		freopen(_outf, "w", stdout);
+#pragma warning(pop) 
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
 	//cout << setprecision(20);
