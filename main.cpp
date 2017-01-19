@@ -15,7 +15,7 @@ typedef long long ll;
 typedef long double ld;
 #define first x
 #define second y
-const size_t _ML = 200;
+const int _ML = 200;
 const char _inpf[] =
 #if defined(ANDREIKKAA)
 "input.txt"
@@ -41,12 +41,12 @@ inline void* operator new(size_t _x) { _ptr += _x; return _mem + _ptr - _x; }
 inline void operator delete(void*) { }
 #endif
 
-template<typename T, typename U> inline ostream &operator<<(ostream &_out, const pair<T, U> &_p) { _out << _p.first << ' ' << _p.second; return _out; }
+template<typename T, typename U> inline ostream &operator << (ostream &_out, const pair<T, U> &_p) { _out << _p.first << ' ' << _p.second; return _out; }
 template<typename T, typename U> inline istream &operator >> (istream &_in, pair<T, U> &_p) { _in >> _p.first >> _p.second; return _in; }
-template<typename T> inline ostream &operator<<(ostream &_out, const vector<T> &_v) { if (_v.empty()) return _out; _out << _v.front(); for (auto _it = ++_v.begin(); _it != _v.end(); ++_it) _out << ' ' << *_it; return _out; }
-template<typename T> inline istream &operator>> (istream &_in, vector<T> &_v) { for (auto &_i : _v) _in >> _i; return _in; }
-template<typename T> inline ostream &operator<<(ostream &_out, const set<T> &_s) { if (_s.empty()) return _out; _out << *_s.begin(); for (auto _it = ++_s.begin(); _it != _s.end(); ++_it) _out << ' ' << *_it; return _out; }
-template<typename T, typename U> inline ostream &operator<<(ostream &_out, const map<T, U> &_m) { if (_m.empty()) return _out; _out << _m.begin()->first << ": " << _m.begin()->second; for (auto _it = ++_m.begin(); _it != _m.end(); ++_it) _out << ", " << _it->first << ": " << _it->second; return _out; }
+template<typename T> inline ostream &operator << (ostream &_out, const vector<T> &_v) { if (_v.empty()) return _out; _out << _v.front(); for (auto _it = ++_v.begin(); _it != _v.end(); ++_it) _out << ' ' << *_it; return _out; }
+template<typename T> inline istream &operator >> (istream &_in, vector<T> &_v) { for (auto &_i : _v) _in >> _i; return _in; }
+template<typename T> inline ostream &operator << (ostream &_out, const set<T> &_s) { if (_s.empty()) return _out; _out << *_s.begin(); for (auto _it = ++_s.begin(); _it != _s.end(); ++_it) _out << ' ' << *_it; return _out; }
+template<typename T, typename U> inline ostream &operator << (ostream &_out, const map<T, U> &_m) { if (_m.empty()) return _out; _out << _m.begin()->first << ": " << _m.begin()->second; for (auto _it = ++_m.begin(); _it != _m.end(); ++_it) _out << ", " << _it->first << ": " << _it->second; return _out; }
 
 /* ________ CODE ________ */
 
@@ -73,7 +73,7 @@ int main()
 	//cout << setprecision(20);
 	//cout << fixed;
 	mainFunction(ANDREIKKAA_CALL);
-	
+
 #if defined(ANDREIKKAA)
 	cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
 	while (true);
