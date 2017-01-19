@@ -4,7 +4,7 @@ C++11 code template for contests.
 ---
 
 Features:
- - [x] Convinient input/output file redirection
+ - [x] Convenient input/output file redirection
  - [x] Input/output operators for C++ containers
  - [x] Easy TopCoder-formatted tasks support
  - [x] Fast allocator
@@ -19,7 +19,7 @@ Features:
 
 ---
 
-I always appreciate your advices, contacts:
+I always appreciate your advices, contact me:
  - e-mail: andreykalendarov@gmail.com
  - vk.com: @Andreikkaa
  - telegram.org: @Andreikkaa
