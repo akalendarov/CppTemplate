@@ -69,20 +69,18 @@ int main()
 #if defined(ANDREIKKAA)
 	time_t _start = clock();
 #endif
-
 #pragma warning(push)
-#pragma warning(disable : 4127)
+#pragma warning(disable: 4127)
 	if (sizeof(_inpf) > 1)
 		freopen(_inpf, "r", stdin);
 	if (sizeof(_outf) > 1)
 		freopen(_outf, "w", stdout);
-#pragma warning(pop) 
+#pragma warning(pop)
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
 	//cout << setprecision(20);
 	//cout << fixed;
 	mainFunction(ANDREIKKAA_CALL);
-
 #if defined(ANDREIKKAA)
 	cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
 	while (true);
