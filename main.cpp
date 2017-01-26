@@ -12,13 +12,14 @@
 #define ANDREIKKAA_CALL
 #define ANDREIKKAA_RETURN_TYPE void
 
+#define first x
+#define second y
 #include "bits/stdc++.h"
 using namespace std;
 
 typedef long long ll;
 typedef long double ld;
-#define first x
-#define second y
+
 #define endl "\n"
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
@@ -58,7 +59,7 @@ template<typename T, typename U> inline ostream &operator << (ostream &_out, con
 
 inline ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS)
 {
-
+	
 }
 
 /* ________ CODE ________ */
