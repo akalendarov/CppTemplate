@@ -20,7 +20,7 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 
-#define endl "\n"
+#define endl '\n'
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
 const ld PI = acos(-1);
@@ -59,7 +59,7 @@ template<typename T, typename U> inline ostream &operator << (ostream &_out, con
 
 inline ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS)
 {
-	
+
 }
 
 /* ________ CODE ________ */
@@ -70,13 +70,10 @@ int main()
 #if defined(ANDREIKKAA)
 	time_t _start = clock();
 #endif
-#pragma warning(push)
-#pragma warning(disable: 4127)
-	if (sizeof(_inpf) > 1)
+	if (_inpf[0] != '\0')
 		freopen(_inpf, "r", stdin);
-	if (sizeof(_outf) > 1)
+	if (_outf[0] != '\0')
 		freopen(_outf, "w", stdout);
-#pragma warning(pop)
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
 	//cout << setprecision(20);
