@@ -4,6 +4,8 @@ C++11 code template for contests.
 ---
 
 Features:
+ - [x] Compiles on Windows and Linux
+ - [x] Can be compiled by g++ and MSVS
  - [x] Convenient input/output file redirection
  - [x] Input/output operators for C++ containers
  - [x] Easy TopCoder-formatted tasks support
