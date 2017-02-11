@@ -4,6 +4,7 @@
 * @e-mail: andreykalendarov@gmail.com
 */
 
+//#pragma GCC optimize ("O3")
 //#define ANDREIKKAA_TOPCODER
 //#define ANDREIKKAA_ALLOCATOR
 #define ANDREIKKAA_CLASS Solution
@@ -25,7 +26,7 @@ typedef long double ld;
 #define sz(x) (int)(x).size()
 const ld PI = acos(-1);
 
-const int _ML = 200;
+const int _ML = 500;
 const char _inpf[] =
 #if defined(ANDREIKKAA)
 "input.txt"
@@ -53,7 +54,11 @@ template<typename T, typename U> inline istream &operator >> (istream &_in, pair
 template<typename T> inline ostream &operator << (ostream &_out, const vector<T> &_v) { if (_v.empty()) return _out; _out << _v.front(); for (auto _it = ++_v.begin(); _it != _v.end(); ++_it) _out << ' ' << *_it; return _out; }
 template<typename T> inline istream &operator >> (istream &_in, vector<T> &_v) { for (auto &_i : _v) _in >> _i; return _in; }
 template<typename T> inline ostream &operator << (ostream &_out, const set<T> &_s) { if (_s.empty()) return _out; _out << *_s.begin(); for (auto _it = ++_s.begin(); _it != _s.end(); ++_it) _out << ' ' << *_it; return _out; }
-template<typename T, typename U> inline ostream &operator << (ostream &_out, const map<T, U> &_m) { if (_m.empty()) return _out; _out << _m.begin()->first << ": " << _m.begin()->second; for (auto _it = ++_m.begin(); _it != _m.end(); ++_it) _out << ", " << _it->first << ": " << _it->second; return _out; }
+template<typename T> inline ostream &operator << (ostream &_out, const multiset<T> &_s) { if (_s.empty()) return _out; _out << *_s.begin(); for (auto _it = ++_s.begin(); _it != _s.end(); ++_it) _out << ' ' << *_it; return _out; }
+template<typename T> inline ostream &operator << (ostream &_out, const unordered_set<T> &_s) { if (_s.empty()) return _out; _out << *_s.begin(); for (auto _it = ++_s.begin(); _it != _s.end(); ++_it) _out << ' ' << *_it; return _out; }
+template<typename T> inline ostream &operator << (ostream &_out, const unordered_multiset<T> &_s) { if (_s.empty()) return _out; _out << *_s.begin(); for (auto _it = ++_s.begin(); _it != _s.end(); ++_it) _out << ' ' << *_it; return _out; }
+template<typename T, typename U> inline ostream &operator << (ostream &_out, const map<T, U> &_m) { if (_m.empty()) return _out; _out << '(' << _m.begin()->first << ": " << _m.begin()->second << ')'; for (auto _it = ++_m.begin(); _it != _m.end(); ++_it) _out << ", (" << _it->first << ": " << _it->second << ')'; return _out; }
+template<typename T, typename U> inline ostream &operator << (ostream &_out, const unordered_map<T, U> &_m) { if (_m.empty()) return _out; _out << '(' << _m.begin()->first << ": " << _m.begin()->second << ')'; for (auto _it = ++_m.begin(); _it != _m.end(); ++_it) _out << ", (" << _it->first << ": " << _it->second << ')'; return _out; }
 
 /* ________ CODE ________ */
 
@@ -71,13 +76,13 @@ int main()
 	time_t _start = clock();
 #endif
 	if (_inpf[0] != '\0')
-		freopen(_inpf, "r", stdin);
+		assert(freopen(_inpf, "r", stdin) != nullptr);
 	if (_outf[0] != '\0')
-		freopen(_outf, "w", stdout);
+		assert(freopen(_outf, "w", stdout) != nullptr);
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
-	//cout << setprecision(20);
-	//cout << fixed;
+	cout << setprecision(20);
+	//cout << fixed;	
 	mainFunction(ANDREIKKAA_CALL);
 #if defined(ANDREIKKAA)
 	cerr << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
