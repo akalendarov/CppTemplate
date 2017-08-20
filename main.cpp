@@ -87,7 +87,6 @@ int main()
 	mainFunction(ANDREIKKAA_CALL);
 #if defined(ANDREIKKAA)
 	cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
-	while (true);
 #endif
 }
 #else
