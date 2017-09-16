@@ -65,7 +65,7 @@ template<typename T, typename U> inline ostream &operator<< (ostream &_out, cons
 
 inline ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS)
 {
-
+	
 }
 
 /* ________ CODE ________ */
