@@ -4,47 +4,45 @@
 * @e-mail: andreykalendarov@gmail.com
 */
 
+#ifndef ANDREIKKAA
 #pragma GCC optimize ("O3")
-//#define ANDREIKKAA_TOPCODER
+#endif
 //#define ANDREIKKAA_ALLOCATOR
-#define ANDREIKKAA_CLASS Solution
-#define ANDREIKKAA_METHOD solve
-#define ANDREIKKAA_PARAMETERS void
-#define ANDREIKKAA_CALL
-#define ANDREIKKAA_RETURN_TYPE void
-
-#include "bits/stdc++.h"
-using namespace std;
-
-#define x first
-#define y second
-#define endl '\n'
-#define all(x) (x).begin(), (x).end()
-#define sz(x) (int)(x).size()
-
-typedef long long ll;
-typedef double ld;
-
-const ld PI = acos(-1);
+//#define ANDREIKKAA_INTERACTIVE
 const int _ML = 500;
-
 const char _inpf[] =
-#if defined(ANDREIKKAA)
+#ifdef ANDREIKKAA
 "input.txt"
 #else
 ""
 #endif
 ;
 const char _outf[] =
-#if defined(ANDREIKKAA)
+#ifdef ANDREIKKAA
 ""
 #else
 ""
 #endif
 ;
 
+#include <bits/stdc++.h>
+using namespace std;
+#define x first
+#define y second
+#define rand rd
+#define random_shuffle abcdefghijklmnopqrstuvwxyz
+#ifndef ANDREIKKAA_INTERACTIVE
+#define endl '\n'
+#endif
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+typedef long long ll;
+typedef double ld;
+const ld PI = 3.14159265358979323846;
+mt19937 rd(228);
+
 #if defined(ANDREIKKAA_ALLOCATOR)
-char _mem[_ML * 1024LL * 1024LL];
+char _mem[_ML * 1024 * 1024];
 size_t _ptr = 0;
 inline void* operator new (size_t _x) { _ptr += _x; return _mem + _ptr - _x; }
 inline void operator delete (void*) { }
@@ -63,32 +61,26 @@ template<typename T, typename U> inline ostream &operator<< (ostream &_out, cons
 
 /* ________ CODE ________ */
 
-inline ANDREIKKAA_RETURN_TYPE mainFunction(ANDREIKKAA_PARAMETERS)
+inline void mainFunction()
 {
-	
+
 }
 
 /* ________ CODE ________ */
 
-#if defined(ANDREIKKAA) || !defined(ANDREIKKAA_TOPCODER)
 int main()
 {
 #if defined(ANDREIKKAA)
 	time_t _start = clock();
 #endif
-	if (_inpf[0] != '\0')
-		assert(freopen(_inpf, "r", stdin) != nullptr);
-	if (_outf[0] != '\0')
-		assert(freopen(_outf, "w", stdout) != nullptr);
+	if (_inpf[0] != '\0') assert(false), assert(freopen(_inpf, "r", stdin) != nullptr);
+	if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
-	cout << setprecision(20);
+	cout << setprecision(18);
 	//cout << fixed;	
-	mainFunction(ANDREIKKAA_CALL);
+	mainFunction();
 #if defined(ANDREIKKAA)
 	cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
 #endif
 }
-#else
-class ANDREIKKAA_CLASS { public: ANDREIKKAA_RETURN_TYPE ANDREIKKAA_METHOD(ANDREIKKAA_PARAMETERS) { return mainFunction(ANDREIKKAA_CALL); } };
-#endif
