@@ -63,7 +63,7 @@ template<typename T, typename U> inline ostream &operator<< (ostream &_out, cons
 
 inline void mainFunction()
 {
-
+    
 }
 
 /* ________ CODE ________ */
@@ -73,7 +73,7 @@ int main()
 #if defined(ANDREIKKAA)
 	time_t _start = clock();
 #endif
-	if (_inpf[0] != '\0') assert(false), assert(freopen(_inpf, "r", stdin) != nullptr);
+	if (_inpf[0] != '\0') assert(freopen(_inpf, "r", stdin) != nullptr);
 	if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
 	cin.tie(nullptr);
 	ios_base::sync_with_stdio(false);
