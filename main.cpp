@@ -4,34 +4,34 @@
 * @e-mail: andreykalendarov@gmail.com
 */
 
-#ifndef ANDREIKKAA
-#pragma GCC optimize ("O3")
-#endif
 //#define ANDREIKKAA_ALLOCATOR
 //#define ANDREIKKAA_INTERACTIVE
 const int _ML = 500;
 const char _inpf[] =
-#ifdef ANDREIKKAA
+#if defined(ANDREIKKAA)
 "input.txt"
 #else
 ""
 #endif
 ;
 const char _outf[] =
-#ifdef ANDREIKKAA
-""
+#if defined(ANDREIKKAA)
+        ""
 #else
 ""
 #endif
 ;
 
+#if !defined(ANDREIKKAA)
+#pragma GCC optimize ("O3")
+#endif
 #include <bits/stdc++.h>
 using namespace std;
 #define x first
 #define y second
 #define rand rd
 #define random_shuffle abcdefghijklmnopqrstuvwxyz
-#ifndef ANDREIKKAA_INTERACTIVE
+#if !defined(ANDREIKKAA_INTERACTIVE) && !defined(ANDREIKKAA)
 #define endl '\n'
 #endif
 #define all(x) (x).begin(), (x).end()
@@ -63,7 +63,7 @@ template<typename T, typename U> inline ostream &operator<< (ostream &_out, cons
 
 inline void mainFunction()
 {
-    
+
 }
 
 /* ________ CODE ________ */
@@ -71,16 +71,16 @@ inline void mainFunction()
 int main()
 {
 #if defined(ANDREIKKAA)
-	time_t _start = clock();
+    time_t _start = clock();
 #endif
-	if (_inpf[0] != '\0') assert(freopen(_inpf, "r", stdin) != nullptr);
-	if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
-	cin.tie(nullptr);
-	ios_base::sync_with_stdio(false);
-	cout << setprecision(18);
-	//cout << fixed;	
-	mainFunction();
+    if (_inpf[0] != '\0') assert(freopen(_inpf, "r", stdin) != nullptr);
+    if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
+    cin.tie(nullptr);
+    ios_base::sync_with_stdio(false);
+    cout << setprecision(18);
+    //cout << fixed;
+    mainFunction();
 #if defined(ANDREIKKAA)
-	cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
+    cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
 #endif
 }
