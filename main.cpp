@@ -5,8 +5,8 @@
 */
 
 //#define ANDREIKKAA_ALLOCATOR
-//#define ANDREIKKAA_INTERACTIVE
-const int _ML = 500;
+const int _ML = 228;
+
 const char _inpf[] =
 #if defined(ANDREIKKAA)
 "input.txt"
@@ -16,38 +16,36 @@ const char _inpf[] =
 ;
 const char _outf[] =
 #if defined(ANDREIKKAA)
-        ""
+""
 #else
 ""
 #endif
 ;
 
-#if !defined(ANDREIKKAA)
+#if defined(ANDREIKKAA)
+#undef NDEBUG
+#else
+#define endl '\n'
 #pragma GCC optimize ("O3")
 #endif
 #include <bits/stdc++.h>
-using namespace std;
 #define x first
 #define y second
-#define rand rd
+using namespace std;
+#define rand abcdefghijklmnopqrstuvwxyz
 #define random_shuffle abcdefghijklmnopqrstuvwxyz
-#if !defined(ANDREIKKAA_INTERACTIVE) && !defined(ANDREIKKAA)
-#define endl '\n'
-#endif
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
 typedef long long ll;
 typedef double ld;
 const ld PI = 3.14159265358979323846;
 mt19937 rd(228);
-
 #if defined(ANDREIKKAA_ALLOCATOR)
 char _mem[_ML * 1024 * 1024];
 size_t _ptr = 0;
-inline void* operator new (size_t _x) { _ptr += _x; return _mem + _ptr - _x; }
+inline void* operator new (size_t _x) { _ptr += _x; assert(_ptr < _ML * 1024 * 1024); return _mem + _ptr - _x; }
 inline void operator delete (void*) { }
 #endif
-
 template<typename T, typename U> inline ostream &operator<< (ostream &_out, const pair<T, U> &_p) { _out << _p.first << ' ' << _p.second; return _out; }
 template<typename T, typename U> inline istream &operator>> (istream &_in, pair<T, U> &_p) { _in >> _p.first >> _p.second; return _in; }
 template<typename T> inline ostream &operator<< (ostream &_out, const vector<T> &_v) { if (_v.empty()) { return _out; } _out << _v.front(); for (auto _it = ++_v.begin(); _it != _v.end(); ++_it) { _out << ' ' << *_it; } return _out; }
@@ -77,8 +75,10 @@ int main()
     if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
-    cout << setprecision(18);
+    
+    cout << setprecision(20);
     //cout << fixed;
+    
     mainFunction();
 #if defined(ANDREIKKAA)
     cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
