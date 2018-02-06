@@ -59,7 +59,7 @@ template<typename T, typename U> inline ostream &operator<< (ostream &_out, cons
 
 /* ________ CODE ________ */
 
-inline void mainFunction()
+inline void _main_function()
 {
 
 }
@@ -79,7 +79,7 @@ int main()
     cout << setprecision(20);
     //cout << fixed;
     
-    mainFunction();
+    _main_function();
 #if defined(ANDREIKKAA)
     cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
 #endif
