@@ -25,10 +25,12 @@ const char _outf[] =
 #if defined(ANDREIKKAA)
 #undef NDEBUG
 #else
-#define endl '\n'
 #pragma GCC optimize ("O3")
 #endif
 #include <bits/stdc++.h>
+#if !defined(ANDREIKKAA)
+#define endl '\n'
+#endif
 #define x first
 #define y second
 using namespace std;
@@ -75,10 +77,10 @@ int main()
     if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
-    
+
     cout << setprecision(20);
     //cout << fixed;
-    
+
     _main_function();
 #if defined(ANDREIKKAA)
     cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
