@@ -5,7 +5,7 @@
 */
 
 //#define ANDREIKKAA_ALLOCATOR
-const int _ML = 228;
+const int _ML = 400;
 
 const char _inpf[] =
 #if defined(ANDREIKKAA)
@@ -58,11 +58,22 @@ template<class T> inline ostream &operator<< (ostream &, const unordered_set<T> 
 template<class T> inline ostream &operator<< (ostream &, const unordered_multiset<T> &);
 template<class T, class U> inline ostream &operator<< (ostream &, const map<T, U> &);
 template<class T, class U> inline ostream &operator<< (ostream &, const unordered_map<T, U> &);
+template<class T, size_t N> inline ostream &operator<< (ostream &, const array<T, N> &);
+template<class T, size_t N> inline ostream &operator>> (ostream &, array<T, N> &);
 
 /* ________ CODE ________ */
 
-inline void _main_function() {
+void _solve() {
 
+}
+
+void _main_function() {
+    int t = 1;
+    //cin >> t;
+
+    for(int i = 0; i < t; ++i) {
+        _solve();
+    }
 }
 
 /* ________ CODE ________ */
@@ -77,7 +88,7 @@ int main() {
     ios_base::sync_with_stdio(false);
 
     cout << setprecision(20);
-    //cout << fixed;
+    cout << fixed;
 
     _main_function();
 #if defined(ANDREIKKAA)
@@ -138,4 +149,20 @@ template<class T, class U> inline ostream &operator<< (ostream &_out, const unor
     _out << '(' << _m.begin()->x << ": " << _m.begin()->y << ')';
     for (auto _it = ++_m.begin(); _it != _m.end(); ++_it) { _out << ", (" << _it->x << ": " << _it->y << ')'; }
     return _out;
+}
+
+template<class T, size_t N> inline ostream &operator<< (ostream &_out, const array<T, N> &a) {
+    for(int i = 0; i < N; ++i) {
+        _out << a[i];
+        if(i + 1 < N) {
+            _out << ' ';
+        }
+    }
+    return _out;
+}
+template<class T, size_t N> inline istream &operator>> (istream &_in, array<T, N> &a) {
+    for(int i = 0; i < N; ++i) {
+        _in >> a[i];
+    }
+    return _in;
 }
