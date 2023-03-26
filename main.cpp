@@ -10,7 +10,7 @@ using namespace std;
 
 #undef assert
 //#define assert(EXPR) ((void)0)
-#define assert(EXPR) if(!(EXPR)) { cout << endl << "ASSERTION FAILED: LINE " << __LINE__ << "; EXPR `"#EXPR"`" << endl; cout.flush(); exit(1); }
+#define assert(EXPR) if(!(EXPR)) assert_terminate(__LINE__, #EXPR);
 
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
@@ -31,6 +31,7 @@ template<class T, class U> inline ostream &operator<< (ostream &, const map<T, U
 template<class T, class U> inline ostream &operator<< (ostream &, const unordered_map<T, U> &);
 template<class T, size_t N> inline ostream &operator<< (ostream &, const array<T, N> &);
 template<class T, size_t N> inline ostream &operator>> (ostream &, array<T, N> &);
+void assert_terminate(int, const char *);
 
 #ifdef LOCAL_RUN
 //#define INPUT_FILE_NAME "input.txt"
@@ -168,3 +169,9 @@ void* operator new(size_t x) {
 }
 void operator delete (void*) noexcept { }
 #endif
+
+void assert_terminate(int line, const char *expr) {
+    cout << endl << "ASSERTION FAILED: LINE " << line << "; EXPR `" << expr << "`" << endl;
+    cout.flush();
+    exit(1);
+}
