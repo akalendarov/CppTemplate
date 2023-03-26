@@ -1,53 +1,24 @@
-/*
-* C++11 code template for contests.
-* @author: Andrei Kalendarov
-* @e-mail: andreykalendarov@gmail.com
-*/
-
-//#define ANDREIKKAA_ALLOCATOR
-const int _ML = 400;
-
-const char _inpf[] =
-#if defined(ANDREIKKAA)
-    "input.txt"
-#else
-    ""
-#endif
-;
-const char _outf[] =
-#if defined(ANDREIKKAA)
-    ""
-#else
-    ""
-#endif
-;
-
-#if defined(ANDREIKKAA)
-#undef NDEBUG
-#else
+#ifndef LOCAL_RUN
 #pragma GCC optimize("O3,no-stack-protector")
 #endif
+
+#define first x
+#define second y
+
 #include "bits/stdc++.h"
-#if !defined(ANDREIKKAA)
-#define endl '\n'
-#endif
-#define x first
-#define y second
 using namespace std;
-#define rand abcdefghijklmnopqrstuvwxyz
-#define random_shuffle abcdefghijklmnopqrstuvwxyz
+
+#undef assert
+//#define assert(EXPR) ((void)0)
+#define assert(EXPR) if(!(EXPR)) { cout << endl << "ASSERTION FAILED: LINE " << __LINE__ << "; EXPR `"#EXPR"`" << endl; cout.flush(); exit(1); }
+
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
-using ll = long long;
-using ld = double;
-const ld PI = 3.14159265358979323846;
-mt19937 rd(228);
-#if defined(ANDREIKKAA_ALLOCATOR)
-char _mem[_ML * 1024 * 1024];
-size_t _ptr = 0;
-inline void* operator new (size_t _x) { _ptr += _x; assert(_ptr < _ML * 1024 * 1024); return _mem + _ptr - _x; }
-inline void operator delete (void*) { }
+
+#ifndef LOCAL_RUN
+#define endl '\n'
 #endif
+
 template<class T, class U> inline ostream &operator<< (ostream &, const pair<T, U> &);
 template<class T, class U> inline istream &operator>> (istream &, pair<T, U> &);
 template<class T> inline ostream &operator<< (ostream &, const vector<T> &);
@@ -61,38 +32,57 @@ template<class T, class U> inline ostream &operator<< (ostream &, const unordere
 template<class T, size_t N> inline ostream &operator<< (ostream &, const array<T, N> &);
 template<class T, size_t N> inline ostream &operator>> (ostream &, array<T, N> &);
 
+#ifdef LOCAL_RUN
+//#define INPUT_FILE_NAME "input.txt"
+//#define OUTPUT_FILE_NAME "output.txt"
+#else
+//#define INPUT_FILE_NAME "input.txt"
+//#define OUTPUT_FILE_NAME "output.txt"
+#endif
+
+//#define POOL_SIZE_MB 200
+using ll [[maybe_unused]] = long long;
+using ld [[maybe_unused]] = double;
+[[maybe_unused]] const ld PI = 3.14159265358979323846;
+[[maybe_unused]] mt19937 rd(228); // chrono::steady_clock::now().time_since_epoch().count()
+
+
 /* ________ CODE ________ */
 
-void _solve() {
+void run_testcase([[maybe_unused]] int testcase) {
 
 }
 
-void _main_function() {
+void run_solution() {
     int t = 1;
     //cin >> t;
 
     for(int i = 0; i < t; ++i) {
-        _solve();
+        run_testcase(i);
     }
 }
 
 /* ________ CODE ________ */
 
 int main() {
-#if defined(ANDREIKKAA)
+#if defined(LOCAL_RUN)
     time_t _start = clock();
 #endif
-    if (_inpf[0] != '\0') assert(freopen(_inpf, "r", stdin) != nullptr);
-    if (_outf[0] != '\0') assert(freopen(_outf, "w", stdout) != nullptr);
+#ifdef INPUT_FILE_NAME
+    assert(freopen(INPUT_FILE_NAME, "r", stdin) != nullptr);
+#endif
+#ifdef OUTPUT_FILE_NAME
+    assert(freopen(OUTPUT_FILE_NAME, "w", stdout) != nullptr);
+#endif
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
 
     cout << setprecision(20);
     cout << fixed;
 
-    _main_function();
-#if defined(ANDREIKKAA)
-    cout << "Time: " << (clock() - _start) / (ld)CLOCKS_PER_SEC << endl;
+    run_solution();
+#if defined(LOCAL_RUN)
+    cout << "Time: " << (ld)(clock() - _start) / CLOCKS_PER_SEC << endl;
 #endif
 }
 
@@ -166,3 +156,15 @@ template<class T, size_t N> inline istream &operator>> (istream &_in, array<T, N
     }
     return _in;
 }
+
+#ifdef POOL_SIZE_MB
+const size_t POOL_SIZE_B = size_t(POOL_SIZE_MB) * 1024 * 1024;
+byte pool[POOL_SIZE_B];
+size_t ptr = 0;
+void* operator new(size_t x) {
+    ptr += x;
+    assert(ptr <= POOL_SIZE_B);
+    return pool + ptr - x;
+}
+void operator delete (void*) noexcept { }
+#endif
